@@ -1,1 +1,1 @@
-# note-taking-app-front-end
+# Note taking app for practicing React.
