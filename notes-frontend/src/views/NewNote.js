@@ -1,5 +1,12 @@
 import React from 'react';
+import NavBar from '../components/NavBar';
 
-const NewNote = () => <h1>From New Notes</h1>;
+const NewNote = () => {
+  return (
+    <div>
+      <NavBar />
+    </div>
+  );
+};
 
 export default NewNote;

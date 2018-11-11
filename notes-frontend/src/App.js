@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Login from './views/login';
+import Login from './views/Login';
 
 class App extends Component {
   render() {

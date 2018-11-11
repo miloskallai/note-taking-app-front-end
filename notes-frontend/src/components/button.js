@@ -1,8 +1,11 @@
 import React from 'react';
-import '../views/styles/login.css';
 
 const Button = props => {
-  return <button className="button">{props.text}</button>;
+  return (
+    <button style={props.style} className="button">
+      {props.text}
+    </button>
+  );
 };
 
 export default Button;
