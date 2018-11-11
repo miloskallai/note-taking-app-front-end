@@ -1,6 +1,6 @@
 import React from 'react';
-import Button from '../components/button';
-import Logo from '../components/logo';
+import Button from '../components/Button';
+import Logo from '../components/Logo';
 import '../views/styles/login.css';
 
 const Login = () => {
