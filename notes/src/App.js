@@ -1,14 +1,13 @@
-import React, { Component } from 'react';
-import ShowNotes from './ShowNotes';
+import React from 'react';
+import NavBar from './Components/NavBar';
 
-class App extends Component {
-  render() {
-    return (
-      <div className='App'>
-        <ShowNotes />
-      </div>
-    );
-  }
-}
+const App = ({ children }) => {
+  return (
+    <div className='App'>
+      <NavBar />
+      {children}
+    </div>
+  );
+};
 
 export default App;

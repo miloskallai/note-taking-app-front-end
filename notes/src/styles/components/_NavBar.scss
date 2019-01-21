@@ -1,0 +1,23 @@
+.nav-bar {
+  height: 100vh;
+  background-color: #020202;
+  color: $main-font-color;
+  font-weight: 400;
+}
+
+ul {
+  list-style-type: none;
+  font-weight: 100;
+  padding: 0px;
+  margin: 0px;
+  .logo {
+    font-size: 20pt;
+    letter-spacing: 8px;
+  }
+  li {
+    margin: 15px;
+    padding-bottom: 15px;
+    font-size: 14pt;
+    border-bottom: 1px solid $main-border-color;
+  }
+}
