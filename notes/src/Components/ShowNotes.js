@@ -20,6 +20,16 @@ class ShowNotes extends Component {
       });
   }
 
+  handleDelete(id) {
+    fetch(`http://localhost:8080/notes/${id}`, {
+      method: 'delete',
+      headers: new Headers({ 'Content-Type': 'application/json' }),
+      body: JSON.stringify({ _id: id })
+    });
+    const notes = this.state.notes.filter(note => note._id !== id);
+    this.setState({ notes });
+  }
+
   render() {
     return (
       <div className='notes-container'>
@@ -31,6 +41,7 @@ class ShowNotes extends Component {
             title={note.note_title}
             noteText={note.note_text}
             date={note.date}
+            onClick={() => this.handleDelete(note._id)}
           />
         ))}
       </div>
