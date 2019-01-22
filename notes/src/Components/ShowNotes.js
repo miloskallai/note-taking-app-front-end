@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Note from './Note';
+import DashBoardNote from './DashBoardNote';
 
 class ShowNotes extends Component {
   constructor(props) {
@@ -30,18 +30,24 @@ class ShowNotes extends Component {
     this.setState({ notes });
   }
 
+  showNote(id) {
+    localStorage.setItem('id', id);
+  }
+
   render() {
     return (
       <div className='notes-container'>
         <h1>My Notes</h1>
 
         {this.state.notes.map(note => (
-          <Note
+          <DashBoardNote
             key={note._id}
             title={note.note_title}
             noteText={note.note_text}
             date={note.date}
+            id={note._id}
             onClick={() => this.handleDelete(note._id)}
+            showNote={() => this.showNote(note._id)}
           />
         ))}
       </div>

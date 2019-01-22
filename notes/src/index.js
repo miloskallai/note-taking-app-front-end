@@ -6,6 +6,7 @@ import './styles/styles.scss';
 import App from './App';
 import AddNote from './Components/AddNote';
 import ShowNotes from './Components/ShowNotes';
+import ShowNote from './Components/showNote';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
@@ -13,6 +14,7 @@ ReactDOM.render(
     <App>
       <Route exact path='/' component={ShowNotes} />
       <Route path='/new' component={AddNote} />
+      <Route path='/note/:id' component={ShowNote} />
     </App>
   </Router>,
   document.getElementById('root')
