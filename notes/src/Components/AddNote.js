@@ -36,31 +36,7 @@ class AddNote extends Component {
       <div className='add-note-container'>
         <form onSubmit={this.handleSubmit}>
           <p>Add New Note</p>
-          <label className='input-label' htmlFor='note_title'>
-            title
-          </label>
-          <Input
-            type='text'
-            label='note_title'
-            id='note_title'
-            name='note_title'
-            onChange={this.handleChange}
-          />
-
-          <label className='input-label' htmlFor='note_text'>
-            note
-          </label>
-          <textarea
-            onChange={this.handleChange}
-            label='note_text'
-            id='note_text'
-            name='note_text'
-          />
-
-          <div className='btn-container'>
-            <button type='submit'>discard</button>
-            <button>save</button>
-          </div>
+          <Input onChange={this.handleChange} />
         </form>
       </div>
     );

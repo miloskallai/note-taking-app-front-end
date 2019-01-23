@@ -46,8 +46,9 @@ class ShowNotes extends Component {
             noteText={note.note_text}
             date={note.date}
             id={note._id}
-            onClick={() => this.handleDelete(note._id)}
+            handleDelete={() => this.handleDelete(note._id)}
             showNote={() => this.showNote(note._id)}
+            handleEdit={() => this.showNote(note._id)}
           />
         ))}
       </div>

@@ -7,6 +7,8 @@ import App from './App';
 import AddNote from './Components/AddNote';
 import ShowNotes from './Components/ShowNotes';
 import ShowNote from './Components/showNote';
+import EditNote from './Components/EditNote';
+
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
@@ -15,6 +17,7 @@ ReactDOM.render(
       <Route exact path='/' component={ShowNotes} />
       <Route path='/new' component={AddNote} />
       <Route path='/note/:id' component={ShowNote} />
+      <Route path='/notes/edit/:id' component={EditNote} />
     </App>
   </Router>,
   document.getElementById('root')
