@@ -20,6 +20,18 @@ class ShowNotes extends Component {
       });
   }
 
+  componentDidUpdate(prevState) {
+    if (this.state !== prevState) {
+      fetch('http://localhost:8080/notes')
+        .then(res => {
+          return res.json();
+        })
+        .then(data => {
+          this.setState({ notes: data });
+        });
+    }
+  }
+
   handleDelete(id) {
     fetch(`http://localhost:8080/notes/${id}`, {
       method: 'delete',

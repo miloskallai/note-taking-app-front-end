@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import Input from './Input';
+import { Redirect } from 'react-router-dom';
 
 class EditNote extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = { redirect: false };
     this.handleChange = this.handleChange.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
   }
@@ -43,6 +44,9 @@ class EditNote extends Component {
         date: new Date()
       })
     });
+    this.setState({
+      redirect: true
+    });
   }
 
   render() {
@@ -56,6 +60,7 @@ class EditNote extends Component {
             onChange={this.handleChange}
           />
         </form>
+        {this.state.redirect && <Redirect to='/' />}
       </div>
     );
   }
