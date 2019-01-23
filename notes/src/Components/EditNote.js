@@ -5,9 +5,7 @@ class EditNote extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      notes: []
-    };
+    this.state = {};
     this.handleChange = this.handleChange.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
   }
@@ -19,9 +17,7 @@ class EditNote extends Component {
         return res.json();
       })
       .then(data => {
-        this.setState(prevState => ({
-          notes: [...prevState.notes, data]
-        }));
+        this.setState(data);
       });
   }
 
@@ -29,7 +25,9 @@ class EditNote extends Component {
     const target = event.target;
     const value = target.value;
     const name = target.id;
-    this.setState({ [name]: value });
+    this.setState({
+      [name]: value
+    });
   }
 
   handleUpdate(event) {
@@ -51,14 +49,12 @@ class EditNote extends Component {
     return (
       <div className='add-note-container'>
         <form onSubmit={this.handleUpdate}>
-          {this.state.notes.map(note => (
-            <Input
-              key={note._id}
-              titleValue={note.note_title}
-              textValue={note.note_text}
-              onChange={this.handleChange}
-            />
-          ))}
+          <Input
+            key={this.state._id}
+            titleValue={this.state.note_title}
+            textValue={this.state.note_text}
+            onChange={this.handleChange}
+          />
         </form>
       </div>
     );
