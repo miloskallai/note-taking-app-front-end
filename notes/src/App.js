@@ -1,11 +1,12 @@
 import React from 'react';
-import NavBar from './Components/NavBar';
+import ShowNotes from './Components/ShowNotes';
+import NoteViewer from './Components/NoteViewer';
 
 const App = ({ children }) => {
   return (
     <div className='App'>
-      <NavBar />
-      {children}
+      <ShowNotes />
+      <NoteViewer>{children}</NoteViewer>
     </div>
   );
 };

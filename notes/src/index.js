@@ -8,16 +8,16 @@ import AddNote from './Components/AddNote';
 import ShowNotes from './Components/ShowNotes';
 import ShowNote from './Components/showNote';
 import EditNote from './Components/EditNote';
+import NotePreview from './Components/NotePreview';
 
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <Router history={history}>
     <App>
-      <Route exact path='/' component={ShowNotes} />
-      <Route path='/new' component={AddNote} />
-      <Route path='/note/:id' component={ShowNote} />
+      <Route exact path='/note/:id' component={ShowNote} />
       <Route path='/notes/edit/:id' component={EditNote} />
+      <Route path='/new' component={AddNote} />
     </App>
   </Router>,
   document.getElementById('root')

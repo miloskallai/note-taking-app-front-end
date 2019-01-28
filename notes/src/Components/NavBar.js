@@ -3,17 +3,18 @@ import { Link } from 'react-router-dom';
 
 const NavBar = () => {
   return (
-    <div className='nav-bar'>
-      <ul>
-        <li className='logo'>notes</li>
-        <Link to='/'>
-          <li>My Notes</li>
-        </Link>
+    <div className='nav-bar-container'>
+      <div className='nav-bar'>
+        <span className='logo'>notes</span>
         <Link to='/new'>
-          <li>New Note</li>
+          <span>
+            <ion-icon
+              className='add-circle-outline'
+              name='add-circle-outline'
+            />
+          </span>
         </Link>
-        <li>Shared Notes</li>
-      </ul>
+      </div>
     </div>
   );
 };

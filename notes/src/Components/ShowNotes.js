@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import DashBoardNote from './DashBoardNote';
+import NotePreview from './NotePreview';
+import NavBar from './NavBar';
 
 class ShowNotes extends Component {
   constructor(props) {
@@ -48,21 +49,22 @@ class ShowNotes extends Component {
 
   render() {
     return (
-      <div className='notes-container'>
-        <h1>My Notes</h1>
-
-        {this.state.notes.map(note => (
-          <DashBoardNote
-            key={note._id}
-            title={note.note_title}
-            noteText={note.note_text}
-            date={note.date}
-            id={note._id}
-            handleDelete={() => this.handleDelete(note._id)}
-            showNote={() => this.showNote(note._id)}
-            handleEdit={() => this.showNote(note._id)}
-          />
-        ))}
+      <div className='main-container'>
+        <div className='preview-container'>
+          <NavBar />
+          {this.state.notes.map(note => (
+            <NotePreview
+              key={note._id}
+              title={note.note_title}
+              noteText={note.note_text}
+              date={note.date}
+              id={note._id}
+              handleDelete={() => this.handleDelete(note._id)}
+              showNote={() => this.showNote(note._id)}
+              handleEdit={() => this.showNote(note._id)}
+            />
+          ))}
+        </div>
       </div>
     );
   }

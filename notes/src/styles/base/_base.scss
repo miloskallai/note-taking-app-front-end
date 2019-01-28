@@ -6,6 +6,15 @@ body {
   height: 100vh;
 }
 
+html {
+  font-size: 62.5%;
+}
+
 body {
   display: flex;
+}
+
+button {
+  border: none;
+  border-radius: 8px;
 }

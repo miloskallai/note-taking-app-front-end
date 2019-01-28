@@ -1,8 +1,11 @@
-.notes-container {
-  height: 100%;
-  width: 100%;
+.main-container {
+  display: flex;
+}
+
+.preview-container {
+  background-color: $main-background-color;
+  width: 25rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  background-color: $main-background-color;
+  align-items: center;
 }
