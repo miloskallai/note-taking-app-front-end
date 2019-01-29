@@ -1,8 +1,10 @@
 .main-container {
   display: flex;
+  border-right: 0.1rem solid lighten($main-background-color, 40%);
 }
 
 .preview-container {
+  height: 100%;
   background-color: $main-background-color;
   width: 25rem;
   display: flex;

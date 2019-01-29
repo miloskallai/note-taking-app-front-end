@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import NotePreview from './NotePreview';
 import NavBar from './NavBar';
+import firebase from '../firebase';
 
 class ShowNotes extends Component {
   constructor(props) {
@@ -12,13 +13,12 @@ class ShowNotes extends Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:8080/notes')
-      .then(res => {
-        return res.json();
-      })
-      .then(data => {
-        this.setState({ notes: data });
-      });
+    const advRef = firebase.database().ref('notes');
+
+    advRef.on('value', snapshot => {
+      console.log(snapshot.val());
+      this.setState({ notes: snapshot.val() });
+    });
   }
 
   componentDidUpdate(prevState) {
@@ -54,7 +54,7 @@ class ShowNotes extends Component {
           <NavBar />
           {this.state.notes.map(note => (
             <NotePreview
-              key={note._id}
+              key={note.id}
               title={note.note_title}
               noteText={note.note_text}
               date={note.date}

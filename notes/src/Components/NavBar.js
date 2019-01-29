@@ -6,6 +6,7 @@ const NavBar = () => {
     <div className='nav-bar-container'>
       <div className='nav-bar'>
         <span className='logo'>notes</span>
+        <input type='text' placeholder='search' />
         <Link to='/new'>
           <span>
             <ion-icon
