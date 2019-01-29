@@ -1,12 +1,10 @@
 import React from 'react';
-import ShowNotes from './Components/ShowNotes';
-import NoteViewer from './Components/NoteViewer';
+import AppRouter from './routers/AppRouter';
 
-const App = ({ children }) => {
+const App = () => {
   return (
     <div className='App'>
-      <ShowNotes />
-      <NoteViewer>{children}</NoteViewer>
+      <AppRouter />
     </div>
   );
 };

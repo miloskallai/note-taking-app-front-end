@@ -2,7 +2,7 @@
   display: flex;
   border-right: 0.1rem solid lighten($main-background-color, 40%);
 }
-
+/*logo should stay on top*/
 .preview-container {
   height: 100%;
   background-color: $main-background-color;
@@ -18,7 +18,7 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: lighten($main-background-color, 40%);
+  background: black;
 }
 
 ::-webkit-scrollbar-thumb {
