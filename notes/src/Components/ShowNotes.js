@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import NotePreview from './NotePreview';
 import NavBar from './NavBar';
-import firebase from '../firebase';
 
 class ShowNotes extends Component {
   constructor(props) {
@@ -13,12 +12,13 @@ class ShowNotes extends Component {
   }
 
   componentDidMount() {
-    const advRef = firebase.database().ref('notes');
-
-    advRef.on('value', snapshot => {
-      console.log(snapshot.val());
-      this.setState({ notes: snapshot.val() });
-    });
+    fetch('http://localhost:8080/notes')
+      .then(res => {
+        return res.json();
+      })
+      .then(data => {
+        this.setState({ notes: data });
+      });
   }
 
   componentDidUpdate(prevState) {
