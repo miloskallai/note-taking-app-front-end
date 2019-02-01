@@ -5,6 +5,7 @@ import ShowNotes from '../Components/ShowNotes';
 import ShowNote from '../Components/ShowNote';
 import EditNote from '../Components/EditNote';
 import NotFound from '../Components/NotFound';
+import Login from '../Components/Login';
 
 const AppRouter = () => (
   <BrowserRouter>
