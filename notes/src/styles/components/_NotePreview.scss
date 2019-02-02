@@ -1,17 +1,17 @@
 .note-preview-container {
-  color: $main-font-color;
-  padding: 1rem;
-  font-size: 1.6rem;
-  width: 80%;
-  border-bottom: 0.1rem solid lighten($main-font-color, 30%);
+	color: $main-font-color;
+	padding: 1rem;
+	font-size: 1.6rem;
+	width: 80%;
+	border-bottom: 0.1rem solid lighten($main-font-color, 30%);
 }
 
 .note-preview-btn-container {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
 }
 
 .btn__preview {
-  margin: 0.6rem;
+	margin: 0.6rem;
 }

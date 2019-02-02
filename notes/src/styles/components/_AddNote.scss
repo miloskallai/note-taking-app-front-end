@@ -1,58 +1,55 @@
 .add-note-container {
-  background-color: $note-view-background-color;
-  font-size: 1.5rem;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
- color: $main-font-color;
+	background-color: $note-view-background-color;
+	font-size: 1.5rem;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	color: $main-font-color;
 }
-
-
 
 form {
-  margin-top: 5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 70%;
-  width: 70%;
- 
+	margin-top: 5rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	height: 70%;
+	width: 70%;
 }
 
-.input-container{
-  height: 100%;
-  width: 100%;
+.input-container {
+	height: 100%;
+	width: 100%;
 }
 
-label{
-  display: block;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+label {
+	display: block;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
 }
-  .note-input {
-    width: 90%;
-    background-color: $main-border-color;
-    color: $main-font-color;
-    border-radius: 0.5rem;
-  }
+.note-input {
+	width: 90%;
+	background-color: $main-border-color;
+	color: $main-font-color;
+	border-radius: 0.5rem;
+}
 
-  textarea {
-    width: 90%;
-    height: 80%;
-    background-color: $main-border-color;
-    border-radius: 1rem;
-    color: $main-font-color;
-  }
+textarea {
+	width: 90%;
+	height: 80%;
+	background-color: $main-border-color;
+	border-radius: 1rem;
+	color: $main-font-color;
+}
 
-  .btn-container {
-    width: 90%;
-    display: flex;
-    justify-content: space-between;
-    margin: 2rem 0rem;
-  }
+.btn-container {
+	width: 90%;
+	display: flex;
+	justify-content: space-between;
+	margin: 2rem 0rem;
+}
 
-  .btn-icon{
-    font-size: 2rem;
-    background-color: $note-view-background-color;
-  }
+.btn-icon {
+	font-size: 2rem;
+	background-color: $note-view-background-color;
+}

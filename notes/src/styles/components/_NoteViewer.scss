@@ -1,19 +1,17 @@
 .single-note-container {
-  width: 100%;
-  height: 100%;
-  background-color: $note-view-background-color;
-  font-family: 'Cutive Mono', monospace;
-  color: $main-font-color;
-  display: flex;
-  justify-content: center;
-
+	width: 100%;
+	height: 100%;
+	background-color: $note-view-background-color;
+	font-family: 'Cutive Mono', monospace;
+	color: $main-font-color;
+	display: flex;
+	justify-content: center;
 }
 
-.note-viewer{
-  margin-top: 20rem;
-  font-size: 1.7rem;
-  width: 70%;
-  height: 50%;
-  text-align: justify;
+.note-viewer {
+	margin-top: 20rem;
+	font-size: 1.7rem;
+	width: 70%;
+	height: 50%;
+	text-align: justify;
 }
-
