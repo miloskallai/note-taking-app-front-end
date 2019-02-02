@@ -55,7 +55,7 @@ class ShowNotes extends Component {
           <div className='note-preview-organiser'>
             {this.state.notes.map(note => (
               <NotePreview
-                key={note.id}
+                key={note._id}
                 title={note.note_title}
                 noteText={note.note_text}
                 date={note.date}

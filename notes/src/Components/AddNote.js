@@ -6,6 +6,7 @@ class AddNote extends Component {
   constructor(props) {
     super(props);
     this.state = { redirect: false };
+
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }

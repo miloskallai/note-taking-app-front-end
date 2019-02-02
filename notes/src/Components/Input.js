@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Input = ({ onChange, titleValue, textValue }) => {
   return (
@@ -28,7 +29,7 @@ const Input = ({ onChange, titleValue, textValue }) => {
       />
 
       <div className='btn-container'>
-        <span className='btn-icon link icon-container'><ion-icon name="close"></ion-icon></span>
+        <Link className='link' to='/'> <span className='btn-icon link icon-container'><ion-icon name="close"></ion-icon></span></Link>
         <button className='btn-icon'><span className='link icon-container'><ion-icon name="save"></ion-icon></span></button>
       </div>
     </div>

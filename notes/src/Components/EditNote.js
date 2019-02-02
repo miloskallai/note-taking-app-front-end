@@ -9,6 +9,7 @@ class EditNote extends Component {
     this.state = { redirect: false };
     this.handleChange = this.handleChange.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
+
   }
 
   componentDidMount() {
