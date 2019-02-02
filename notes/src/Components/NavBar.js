@@ -1,11 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const NavBar = () => {
+const NavBar = ({ handleFilter, filteredValue }) => {
 	return (
 		<div className='nav-bar-container'>
 			<span className='logo'>notes</span>
-			<input className='search-bar' type='text' placeholder='search' />
+			<input
+				onChange={handleFilter}
+				className='search-bar'
+				type='text'
+				placeholder='search'
+				value={filteredValue}
+				id='filter'
+			/>
 			<Link className='link' to='/new'>
 				<span>
 					<ion-icon name='add' />

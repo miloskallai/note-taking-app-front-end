@@ -3,73 +3,90 @@ import NotePreview from './NotePreview';
 import NavBar from './NavBar';
 
 class ShowNotes extends Component {
-  constructor(props) {
-    super(props);
+	constructor(props) {
+		super(props);
 
-    this.state = {
-      notes: []
-    };
-  }
+		this.state = {
+			notes: [],
+			noteFilter: ''
+		};
 
-  componentDidMount() {
-    fetch('http://localhost:8080/notes')
-      .then(res => {
-        return res.json();
-      })
-      .then(data => {
-        this.setState({ notes: data });
-      });
-  }
+		this.handleFilter = this.handleFilter.bind(this);
+	}
 
-  componentDidUpdate(prevState) {
-    if (this.state !== prevState) {
-      fetch('http://localhost:8080/notes')
-        .then(res => {
-          return res.json();
-        })
-        .then(data => {
-          this.setState({ notes: data });
-        });
-    }
-  }
+	componentWillMount() {
+		fetch('http://localhost:8080/notes')
+			.then(res => {
+				return res.json();
+			})
+			.then(data => {
+				this.setState({ notes: data });
+			});
+	}
 
-  handleDelete(id) {
-    fetch(`http://localhost:8080/notes/${id}`, {
-      method: 'delete',
-      headers: new Headers({ 'Content-Type': 'application/json' }),
-      body: JSON.stringify({ _id: id })
-    });
-    const notes = this.state.notes.filter(note => note._id !== id);
-    this.setState({ notes });
-  }
+	componentDidUpdate(prevState) {
+		if (this.state !== prevState) {
+			fetch('http://localhost:8080/notes')
+				.then(res => {
+					return res.json();
+				})
+				.then(data => {
+					this.setState({ notes: data });
+				});
+		}
+	}
 
-  showNote(id) {
-    localStorage.setItem('id', id);
-  }
+	handleDelete(id) {
+		fetch(`http://localhost:8080/notes/${id}`, {
+			method: 'delete',
+			headers: new Headers({ 'Content-Type': 'application/json' }),
+			body: JSON.stringify({ _id: id })
+		});
+		const notes = this.state.notes.filter(note => note._id !== id);
+		this.setState({ notes });
+	}
 
-  render() {
-    return (
-      <div className='main-container'>
-        <div className='preview-container'>
-          <NavBar />
-          <div className='note-preview-organiser'>
-            {this.state.notes.map(note => (
-              <NotePreview
-                key={note._id}
-                title={note.note_title}
-                noteText={note.note_text}
-                date={note.date}
-                id={note._id}
-                handleDelete={() => this.handleDelete(note._id)}
-                showNote={() => this.showNote(note._id)}
-                handleEdit={() => this.showNote(note._id)}
-              />
-            ))}
-          </div>
-        </div>
-      </div>
-    );
-  }
+	handleFilter = e => {
+		this.setState({
+			noteFilter: e.target.value
+		});
+	};
+
+	showNote(id) {
+		localStorage.setItem('id', id);
+	}
+
+	render() {
+		return (
+			<div className='main-container'>
+				<div className='preview-container'>
+					<NavBar
+						handleFilter={this.handleFilter}
+						filteredValue={this.state.noteFilter}
+					/>
+					<div className='note-preview-organiser'>
+						{this.state.notes.map(
+							note =>
+								note.note_text.includes(
+									this.state.noteFilter.toLocaleLowerCase()
+								) && (
+									<NotePreview
+										key={note._id}
+										title={note.note_title}
+										noteText={note.note_text}
+										date={note.date}
+										id={note._id}
+										handleDelete={() => this.handleDelete(note._id)}
+										showNote={() => this.showNote(note._id)}
+										handleEdit={() => this.showNote(note._id)}
+									/>
+								)
+						)}
+					</div>
+				</div>
+			</div>
+		);
+	}
 }
 
 export default ShowNotes;
