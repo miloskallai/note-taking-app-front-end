@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import AddNote from '../Components/AddNote';
 import ShowNotes from '../Components/ShowNotes';
-import ShowNote from '../Components/ShowNote';
+import ShowNote from '../Components/showNote';
 import EditNote from '../Components/EditNote';
 import NotFound from '../Components/NotFound';
 import Login from '../Components/Login';

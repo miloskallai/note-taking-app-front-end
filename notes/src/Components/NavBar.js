@@ -4,18 +4,18 @@ import { Link } from 'react-router-dom';
 const NavBar = () => {
   return (
     <div className='nav-bar-container'>
-      <div className='nav-bar'>
-        <span className='logo'>notes</span>
-        <input type='text' placeholder='search' />
-        <Link to='/new'>
-          <span>
-            <ion-icon
-              className='add-circle-outline'
-              name='add-circle-outline'
-            />
-          </span>
-        </Link>
-      </div>
+
+      <span className='logo'>notes</span>
+      <input className='search-bar' type='text' placeholder='search' />
+      <Link to='/new'>
+        <span>
+          <ion-icon
+            className='add-circle-outline icon-link'
+            name='add-circle-outline'
+          />
+        </span>
+      </Link>
+
     </div>
   );
 };

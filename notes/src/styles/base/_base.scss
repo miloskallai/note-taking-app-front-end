@@ -14,7 +14,16 @@ body {
   display: flex;
 }
 
-button {
-  border: none;
-  border-radius: 8px;
+.icon-link{
+  color: red;
+}
+
+.btn-icon{
+border: none;
+color: white;
+background-color: $main-background-color;
+}
+
+.icon-link:hover{
+  cursor: pointer;
 }

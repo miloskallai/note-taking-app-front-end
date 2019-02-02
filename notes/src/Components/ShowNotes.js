@@ -52,18 +52,20 @@ class ShowNotes extends Component {
       <div className='main-container'>
         <div className='preview-container'>
           <NavBar />
-          {this.state.notes.map(note => (
-            <NotePreview
-              key={note.id}
-              title={note.note_title}
-              noteText={note.note_text}
-              date={note.date}
-              id={note._id}
-              handleDelete={() => this.handleDelete(note._id)}
-              showNote={() => this.showNote(note._id)}
-              handleEdit={() => this.showNote(note._id)}
-            />
-          ))}
+          <div className='note-preview-organiser'>
+            {this.state.notes.map(note => (
+              <NotePreview
+                key={note.id}
+                title={note.note_title}
+                noteText={note.note_text}
+                date={note.date}
+                id={note._id}
+                handleDelete={() => this.handleDelete(note._id)}
+                showNote={() => this.showNote(note._id)}
+                handleEdit={() => this.showNote(note._id)}
+              />
+            ))}
+          </div>
         </div>
       </div>
     );

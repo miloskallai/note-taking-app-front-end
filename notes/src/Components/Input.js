@@ -28,8 +28,8 @@ const Input = ({ onChange, titleValue, textValue }) => {
       />
 
       <div className='btn-container'>
-        <button type='submit'>discard</button>
-        <button>save</button>
+        <button className='btn-icon'><ion-icon name="close"></ion-icon></button>
+        <button className='btn-icon'><ion-icon name="save"></ion-icon></button>
       </div>
     </div>
   );

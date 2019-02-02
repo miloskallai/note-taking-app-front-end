@@ -16,19 +16,13 @@ const NotePreview = ({
       <p>{noteText}</p>
       <p>{date}</p>
       <div className='note-preview-btn-container'>
-        <button className='btn btn__preview' onClick={handleDelete}>
-          delete
-        </button>
+        <ion-icon className='icon-link' name="trash" onClick={handleDelete}></ion-icon>
         <span className='btn-action-container'>
           <Link to={`/notes/edit/${id}`}>
-            <button className='btn btn__preview' onClick={handleEdit}>
-              edit
-            </button>
+            <ion-icon className='icon-link' name="create" onClick={handleEdit}></ion-icon>
           </Link>
           <Link to={`/note/${id}`}>
-            <button className='btn btn__preview' onClick={showNote}>
-              show
-            </button>
+            <ion-icon className='icon-link' name="eye" onClick={showNote}></ion-icon>
           </Link>
         </span>
       </div>
