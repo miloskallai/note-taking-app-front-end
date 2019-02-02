@@ -26,14 +26,16 @@ class ShowNote extends Component {
   render() {
     return (
       <div className='single-note-container'>
-        {this.state.note.map(note => (
-          <Note
-            key={note._id}
-            title={note.note_title}
-            noteText={note.note_text}
-            date={note.date}
-          />
-        ))}
+        <div className='note-viewer'>
+          {this.state.note.map(note => (
+            <Note
+              key={note._id}
+              title={note.note_title}
+              noteText={note.note_text}
+              date={note.date}
+            />
+          ))}
+        </div>
       </div>
     );
   }

@@ -7,12 +7,9 @@ const NavBar = () => {
 
       <span className='logo'>notes</span>
       <input className='search-bar' type='text' placeholder='search' />
-      <Link to='/new'>
+      <Link className='link' to='/new'>
         <span>
-          <ion-icon
-            className='add-circle-outline icon-link'
-            name='add-circle-outline'
-          />
+          <ion-icon name="add"></ion-icon>
         </span>
       </Link>
 

@@ -28,8 +28,8 @@ const Input = ({ onChange, titleValue, textValue }) => {
       />
 
       <div className='btn-container'>
-        <button className='btn-icon'><ion-icon name="close"></ion-icon></button>
-        <button className='btn-icon'><ion-icon name="save"></ion-icon></button>
+        <span className='btn-icon link icon-container'><ion-icon name="close"></ion-icon></span>
+        <button className='btn-icon'><span className='link icon-container'><ion-icon name="save"></ion-icon></span></button>
       </div>
     </div>
   );

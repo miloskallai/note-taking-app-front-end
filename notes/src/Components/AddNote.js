@@ -39,7 +39,7 @@ class AddNote extends Component {
     return (
       <div className='add-note-container'>
         <form onSubmit={this.handleSubmit}>
-          <p>Add New Note</p>
+          <h2>Add New Note</h2>
           <Input onChange={this.handleChange} />
         </form>
         {this.state.redirect && <Redirect to='/' />}

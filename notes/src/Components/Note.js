@@ -7,7 +7,9 @@ const Note = ({ title, noteText, date, handleDelete, handleEdit }) => {
       <p>{noteText}</p>
       <p>{date}</p>
       <div className='noteID-btn-container'>
-        <ion-icon className='icon-link' name="trash" onClick={handleDelete}></ion-icon> <ion-icon className='icon-link' name="create" onClick={handleEdit}></ion-icon>
+        <span className='link icon-container'><ion-icon name="trash" onClick={handleDelete}></ion-icon> </span>
+        <span className='link icon-container'><ion-icon className='icon-link' name="create" onClick={handleEdit}></ion-icon></span>
+
       </div>
     </div>
   );

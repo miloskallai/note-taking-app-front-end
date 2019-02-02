@@ -27,7 +27,7 @@ color: red !important;
 }
 
 ::-webkit-scrollbar-track {
-  background: black;
+  background: $main-background-color;
 }
 
 ::-webkit-scrollbar-thumb {

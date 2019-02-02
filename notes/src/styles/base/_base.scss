@@ -14,16 +14,26 @@ body {
   display: flex;
 }
 
-.icon-link{
-  color: red;
-}
-
 .btn-icon{
 border: none;
 color: white;
 background-color: $main-background-color;
 }
 
-.icon-link:hover{
+//change font family
+input {
+  font-family: 'Cutive Mono', monospace !important;
+}
+
+*:focus {
+  outline: none;
+}
+
+.link {
+  text-decoration: none;
+  color: $main-font-color;
+}
+
+.link:hover{
   cursor: pointer;
 }
