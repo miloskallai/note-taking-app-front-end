@@ -74,7 +74,7 @@ class ShowNotes extends Component {
 										key={note._id}
 										title={note.note_title}
 										noteText={note.note_text}
-										date={note.date}
+										date={new Date(note.date).toDateString()}
 										id={note._id}
 										handleDelete={() => this.handleDelete(note._id)}
 										showNote={() => this.showNote(note._id)}

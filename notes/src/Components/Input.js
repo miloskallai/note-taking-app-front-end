@@ -30,13 +30,12 @@ const Input = ({ onChange, titleValue, textValue }) => {
 
 			<div className='btn-container'>
 				<Link className='link' to='/'>
-					{' '}
-					<span className='btn-icon link icon-container'>
+					<span className='btn-icon input-icon link icon-container'>
 						<ion-icon name='close' />
 					</span>
 				</Link>
 				<button className='btn-icon'>
-					<span className='link icon-container'>
+					<span className='link btn-icon input-icon icon-container'>
 						<ion-icon name='save' />
 					</span>
 				</button>

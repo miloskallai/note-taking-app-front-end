@@ -18,13 +18,13 @@ const NotePreview = ({
 					? noteText.substring(0, 50) + '...'
 					: noteText}
 			</p>
-			<p>{date}</p>
+			<p className='date-container'>{date}</p>
 			<div className='note-preview-btn-container'>
 				<span className='link icon-container'>
 					<ion-icon name='trash' onClick={handleDelete} />
 				</span>
 				<span className='btn-action-container'>
-					<Link className='link' to={`/notes/edit/${id}`}>
+					<Link className='edit link' to={`/notes/edit/${id}`}>
 						<ion-icon name='create' onClick={handleEdit} />
 					</Link>
 					<Link className='link' to={`/note/${id}`}>

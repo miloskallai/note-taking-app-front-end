@@ -4,7 +4,9 @@ import { Link } from 'react-router-dom';
 const NavBar = ({ handleFilter, filteredValue }) => {
 	return (
 		<div className='nav-bar-container'>
-			<span className='logo'>notes</span>
+			<Link className='link' to='/'>
+				<span className='logo'>notes</span>
+			</Link>
 			<input
 				onChange={handleFilter}
 				className='search-bar'

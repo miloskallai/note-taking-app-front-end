@@ -49,6 +49,7 @@ class ShowNote extends Component {
 	}
 
 	render() {
+		console.log(this.props);
 		return (
 			<div className='single-note-container'>
 				<div className='note-viewer'>
@@ -57,7 +58,7 @@ class ShowNote extends Component {
 							key={note._id}
 							title={note.note_title}
 							noteText={note.note_text}
-							date={note.date}
+							date={new Date(note.date).toDateString()}
 							handleDelete={this.handleDelete}
 							handleEdit={this.handleEdit}
 						/>

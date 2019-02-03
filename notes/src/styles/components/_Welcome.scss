@@ -1,0 +1,23 @@
+.welcome-container {
+	@include right-panel-setup;
+	font-size: 1.5rem;
+	@include flex-center;
+	h1 {
+		margin-bottom: 10rem;
+	}
+}
+
+.welcome-text-container {
+	margin: 5rem;
+	text-align: center;
+	align-self: center;
+}
+
+.action-table {
+	text-align: left;
+}
+
+.welcon-icon-container {
+	margin-left: 8rem;
+	font-size: 2rem;
+}
