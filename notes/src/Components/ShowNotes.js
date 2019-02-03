@@ -12,9 +12,10 @@ class ShowNotes extends Component {
 		};
 
 		this.handleFilter = this.handleFilter.bind(this);
+		this.fetchNotes = this.fetchNotes.bind(this);
 	}
 
-	componentWillMount() {
+	fetchNotes() {
 		fetch('http://localhost:8080/notes')
 			.then(res => {
 				return res.json();
@@ -24,15 +25,13 @@ class ShowNotes extends Component {
 			});
 	}
 
+	componentWillMount() {
+		this.fetchNotes();
+	}
+
 	componentDidUpdate(prevState) {
 		if (this.state !== prevState) {
-			fetch('http://localhost:8080/notes')
-				.then(res => {
-					return res.json();
-				})
-				.then(data => {
-					this.setState({ notes: data });
-				});
+			this.fetchNotes();
 		}
 	}
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import Note from './Note';
+import equal from 'fast-deep-equal';
 
 class ShowNote extends Component {
 	constructor(props) {
@@ -13,18 +14,23 @@ class ShowNote extends Component {
 		};
 		this.handleDelete = this.handleDelete.bind(this);
 		this.handleEdit = this.handleEdit.bind(this);
+		this.fetchPost = this.fetchPost.bind(this);
 	}
 
 	componentDidMount() {
+		this.fetchPost();
+	}
+
+	fetchPost() {
 		const id = localStorage.getItem('id');
 		fetch(`http://localhost:8080/notes/${id}`)
 			.then(res => {
 				return res.json();
 			})
 			.then(data => {
-				this.setState(prevState => ({
-					note: [...prevState.note, data]
-				}));
+				this.setState({
+					note: [data]
+				});
 			});
 	}
 
@@ -46,6 +52,12 @@ class ShowNote extends Component {
 		this.setState({
 			redirectEdit: true
 		});
+	}
+
+	componentDidUpdate(prevProps) {
+		if (!equal(this.props, prevProps)) {
+			this.fetchPost();
+		}
 	}
 
 	render() {
