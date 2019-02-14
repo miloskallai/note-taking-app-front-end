@@ -1,91 +1,92 @@
 import React, { Component } from 'react';
 import NotePreview from './NotePreview';
 import NavBar from './NavBar';
+import firebase from '../firebase/firebase';
 
 class ShowNotes extends Component {
-	constructor(props) {
-		super(props);
+  constructor(props) {
+    super(props);
 
-		this.state = {
-			notes: [],
-			noteFilter: ''
-		};
+    this.state = {
+      notes: [],
+      noteFilter: ''
+    };
 
-		this.handleFilter = this.handleFilter.bind(this);
-		this.fetchNotes = this.fetchNotes.bind(this);
-	}
+    this.handleFilter = this.handleFilter.bind(this);
+    this.fetchNotes = this.fetchNotes.bind(this);
+  }
 
-	fetchNotes() {
-		fetch('http://localhost:8080/notes')
-			.then(res => {
-				return res.json();
-			})
-			.then(data => {
-				this.setState({ notes: data });
-			});
-	}
+  fetchNotes() {
+    const notes = [];
+    firebase
+      .database()
+      .ref('notes')
+      .on('value', snapshot => {
+        snapshot.forEach(childSnapshot => {
+          notes.push({
+            id: childSnapshot.key,
+            ...childSnapshot.val()
+          });
+        });
+      });
 
-	componentWillMount() {
-		this.fetchNotes();
-	}
+    this.setState({ notes });
+  }
 
-	componentDidUpdate(prevState) {
-		if (this.state !== prevState) {
-			this.fetchNotes();
-		}
-	}
+  componentDidMount() {
+    this.fetchNotes();
+  }
 
-	handleDelete(id) {
-		fetch(`http://localhost:8080/notes/${id}`, {
-			method: 'delete',
-			headers: new Headers({ 'Content-Type': 'application/json' }),
-			body: JSON.stringify({ _id: id })
-		});
-		const notes = this.state.notes.filter(note => note._id !== id);
-		this.setState({ notes });
-	}
+  handleDelete(id) {
+    firebase
+      .database()
+      .ref(`notes/${id}`)
+      .remove();
+    const notes = this.state.notes.filter(note => note._id !== id);
+    this.setState({ notes });
+  }
 
-	handleFilter = e => {
-		this.setState({
-			noteFilter: e.target.value
-		});
-	};
+  handleFilter = e => {
+    this.setState({
+      noteFilter: e.target.value
+    });
+  };
 
-	showNote(id) {
-		localStorage.setItem('id', id);
-	}
+  showNote(id) {
+    localStorage.setItem('id', id);
+  }
 
-	render() {
-		return (
-			<div className='main-container'>
-				<div className='preview-container'>
-					<NavBar
-						handleFilter={this.handleFilter}
-						filteredValue={this.state.noteFilter}
-					/>
-					<div className='note-preview-organiser'>
-						{this.state.notes.map(
-							note =>
-								note.note_text.includes(
-									this.state.noteFilter.toLocaleLowerCase()
-								) && (
-									<NotePreview
-										key={note._id}
-										title={note.note_title}
-										noteText={note.note_text}
-										date={new Date(note.date).toDateString()}
-										id={note._id}
-										handleDelete={() => this.handleDelete(note._id)}
-										showNote={() => this.showNote(note._id)}
-										handleEdit={() => this.showNote(note._id)}
-									/>
-								)
-						)}
-					</div>
-				</div>
-			</div>
-		);
-	}
+  render() {
+    return (
+      <div className='main-container'>
+        <div className='preview-container'>
+          <NavBar
+            handleFilter={this.handleFilter}
+            filteredValue={this.state.noteFilter}
+          />
+          <div className='note-preview-organiser'>
+            {this.state.notes.map(
+              note =>
+                note.note_text.includes(
+                  this.state.noteFilter.toLocaleLowerCase()
+                ) && (
+                  <NotePreview
+                    key={note.id}
+                    title={note.note_title}
+                    noteText={note.note_text}
+                    date={new Date(note.date).toDateString()}
+                    id={note.id}
+                    handleDelete={() => this.handleDelete(note.id)}
+                    showNote={() => this.showNote(note.id)}
+                    handleEdit={() => this.showNote(note.id)}
+                  />
+                )
+            )}
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default ShowNotes;

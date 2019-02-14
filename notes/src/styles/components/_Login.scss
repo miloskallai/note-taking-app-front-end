@@ -1,0 +1,19 @@
+.login-container {
+  width: 100vw;
+  height: 100vh;
+  @include flex-center;
+}
+
+.login-form {
+  @include flex-center;
+  width: 20vw;
+}
+
+.btn-login {
+  width: 18rem;
+  height: 3rem;
+  border-radius: 0.8rem;
+  font-size: 2rem;
+  align-self: center;
+  margin-top: 2rem;
+}

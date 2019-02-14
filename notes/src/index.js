@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './styles/styles.scss';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import './firebase/firebase';
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
