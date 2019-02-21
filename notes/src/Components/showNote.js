@@ -1,89 +1,41 @@
-import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import React from 'react';
 import Note from './Note';
-import equal from 'fast-deep-equal';
+import { connect } from 'react-redux';
+import { startDeleteNote, showNote } from '../actions/index';
 
-class ShowNote extends Component {
-	constructor(props) {
-		super(props);
+const ShowNote = props => {
+  const note = props.notes.filter(note => note.id === props.filters.id);
 
-		this.state = {
-			note: [],
-			redirect: false,
-			redirectEdit: false
-		};
-		this.handleDelete = this.handleDelete.bind(this);
-		this.handleEdit = this.handleEdit.bind(this);
-		this.fetchPost = this.fetchPost.bind(this);
-	}
+  return (
+    <div className='single-note-container'>
+      <div className='note-viewer'>
+        {note.map(note => {
+          return (
+            <Note
+              id={note.id}
+              key={note.id}
+              note_title={note.note_title}
+              note_text={note.note_text}
+              date={new Date(note.date).toDateString()}
+              handleDelete={() => props.dispatch(startDeleteNote(note.id))}
+              handleEdit={() =>
+                props.dispatch(
+                  showNote(note.id, note.note_title, note.note_text, note.date)
+                )
+              }
+            />
+          );
+        })}
+      </div>
+    </div>
+  );
+};
 
-	componentDidMount() {
-		this.fetchPost();
-	}
+const mapStateToprops = state => {
+  return {
+    notes: state.notes,
+    filters: state.filters
+  };
+};
 
-	fetchPost() {
-		const id = localStorage.getItem('id');
-		fetch(`http://localhost:8080/notes/${id}`)
-			.then(res => {
-				return res.json();
-			})
-			.then(data => {
-				this.setState({
-					note: [data]
-				});
-			});
-	}
-
-	handleDelete() {
-		const id = localStorage.getItem('id');
-
-		this.setState({
-			redirect: true
-		});
-
-		fetch(`http://localhost:8080/notes/${id}`, {
-			method: 'delete',
-			headers: new Headers({ 'Content-Type': 'application/json' }),
-			body: JSON.stringify({ _id: id })
-		});
-	}
-
-	handleEdit() {
-		this.setState({
-			redirectEdit: true
-		});
-	}
-
-	componentDidUpdate(prevProps) {
-		if (!equal(this.props, prevProps)) {
-			this.fetchPost();
-		}
-	}
-
-	render() {
-		console.log(this.props);
-		return (
-			<div className='single-note-container'>
-				<div className='note-viewer'>
-					{this.state.note.map(note => (
-						<Note
-							key={note._id}
-							title={note.note_title}
-							noteText={note.note_text}
-							date={new Date(note.date).toDateString()}
-							handleDelete={this.handleDelete}
-							handleEdit={this.handleEdit}
-						/>
-					))}
-					{this.state.redirect && <Redirect to='/' />}
-
-					{this.state.redirectEdit && (
-						<Redirect to={`/notes/edit/${this.state.note[0]._id}`} />
-					)}
-				</div>
-			</div>
-		);
-	}
-}
-
-export default ShowNote;
+export default connect(mapStateToprops)(ShowNote);

@@ -1,53 +1,74 @@
-import React, { Component } from 'react';
-import Input from './Input';
-import { Redirect } from 'react-router-dom';
-import firebase from '../firebase/firebase';
+import React from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { startAddNote } from '../actions/index';
 
-class AddNote extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { redirect: false };
+const AddNote = ({ history, startAddNote }) => {
+  let title_input;
+  let text_input;
 
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+  return (
+    <div className='add-note-container'>
+      <form
+        onSubmit={event => {
+          event.preventDefault();
+          startAddNote(title_input.value, text_input.value);
+          history.push('/');
+        }}
+      >
+        <h2>Add New Note</h2>
+        <div className='input-container'>
+          <label className='input-label' htmlFor='note_title'>
+            title
+          </label>
+          <input
+            className='note-input'
+            type='text'
+            id='note_title'
+            name='note_title'
+            label='note_title'
+            ref={node => (title_input = node)}
+          />
 
-  handleChange(event) {
-    const target = event.target;
-    const value = target.value;
-    const name = target.id;
-    this.setState({ [name]: value });
-  }
+          <label className='input-label' htmlFor='note_text'>
+            note
+          </label>
+          <textarea
+            label='note_text'
+            id='note_text'
+            name='note_text'
+            ref={node => (text_input = node)}
+          />
 
-  handleSubmit(event) {
-    event.preventDefault();
-    const { note_title, note_text } = this.state;
-    const note = {
-      note_title,
-      note_text,
-      date: firebase.database.ServerValue.TIMESTAMP
-    };
-    firebase
-      .database()
-      .ref('notes')
-      .push(note);
+          <div className='btn-container'>
+            <Link className='link' to='/'>
+              <span className='btn-icon input-icon link icon-container'>
+                <ion-icon name='close' />
+              </span>
+            </Link>
+            <button className='btn-icon'>
+              <span className='link btn-icon input-icon icon-container'>
+                <ion-icon name='save' />
+              </span>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  );
+};
 
-    this.setState({
-      redirect: true
-    });
-  }
+const mapStateToProps = state => ({
+  note_title: state.note_title,
+  note_text: state.note_text
+});
 
-  render() {
-    return (
-      <div className='add-note-container'>
-        <form onSubmit={this.handleSubmit}>
-          <h2>Add New Note</h2>
-          <Input onChange={this.handleChange} />
-        </form>
-        {this.state.redirect && <Redirect to='/' />}
-      </div>
-    );
-  }
-}
+const mapDispatchToProps = dispatch => ({
+  startAddNote: (note_title, note_text) =>
+    dispatch(startAddNote(note_title, note_text))
+});
 
-export default AddNote;
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AddNote);

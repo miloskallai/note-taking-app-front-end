@@ -1,29 +1,17 @@
 import React, { Component } from 'react';
 import Input from './Input';
-import { Redirect } from 'react-router-dom';
-import firebase from '../firebase/firebase';
+import { connect } from 'react-redux';
+import { startEditNote } from '../actions';
 
 class EditNote extends Component {
   constructor(props) {
     super(props);
-
-    this.state = { redirect: false, note_text: '', note_title: '' };
+    this.state = {
+      id: props.filters ? props.filters.id : '',
+      note_text: props.filters ? props.filters.note_text : '',
+      note_title: props.filters ? props.filters.note_title : ''
+    };
     this.handleChange = this.handleChange.bind(this);
-    this.handleUpdate = this.handleUpdate.bind(this);
-  }
-
-  componentDidMount() {
-    const id = localStorage.getItem('id');
-    firebase
-      .database()
-      .ref(`notes/${id}`)
-      .on('value', snapshot => {
-        const data = snapshot.val();
-        this.setState({
-          note_text: data.note_text,
-          note_title: data.note_title
-        });
-      });
   }
 
   handleChange(event) {
@@ -35,40 +23,67 @@ class EditNote extends Component {
     });
   }
 
-  handleUpdate(event) {
-    event.preventDefault();
-    const { note_title, note_text } = this.state;
-    const id = localStorage.getItem('id');
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.filters.id !== prevState.id) {
+      return {
+        id: nextProps.filters ? nextProps.filters.id : '',
+        note_text: nextProps.filters ? nextProps.filters.note_text : '',
+        note_title: nextProps.filters ? nextProps.filters.note_title : ''
+      };
+    } else {
+      return null;
+    }
+  }
 
-    firebase
-      .database()
-      .ref(`notes/${id}`)
-      .update({
-        note_title,
-        note_text,
-        date: firebase.database.ServerValue.TIMESTAMP
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.filters.id !== this.props.filters.id) {
+      this.setState({
+        id: this.props.filters ? this.props.filters.id : '',
+        note_text: this.props.filters ? this.props.filters.note_text : '',
+        note_title: this.props.filters ? this.props.filters.note_title : ''
       });
-
-    this.setState({
-      redirect: true
-    });
+    }
   }
 
   render() {
     return (
       <div className='add-note-container'>
-        <form onSubmit={this.handleUpdate}>
+        <form
+          onSubmit={event => {
+            event.preventDefault();
+            const updates = {
+              note_title: this.state.note_title,
+              note_text: this.state.note_text
+            };
+            const id = this.state.id;
+            this.props.startEditNote(id, updates);
+            this.props.history.push('/');
+          }}
+        >
           <Input
-            key={this.state._id}
+            key={this.state.id}
             titleValue={this.state.note_title}
             textValue={this.state.note_text}
             onChange={this.handleChange}
           />
         </form>
-        {this.state.redirect && <Redirect to='/' />}
       </div>
     );
   }
 }
 
-export default EditNote;
+const mapStateToProps = state => {
+  return {
+    notes: state.notes,
+    filters: state.filters
+  };
+};
+
+const mapDispatchToProps = dispatch => ({
+  startEditNote: (id, updates) => dispatch(startEditNote(id, updates))
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(EditNote);
