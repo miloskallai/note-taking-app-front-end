@@ -1,16 +1,38 @@
-import React from 'react';
+import React, {Component} from 'react';
 import NotePreview from './NotePreview';
 import NavBar from './NavBar';
 import { connect } from 'react-redux';
 
-const ShowNotes = props => {
-  return (
+class ShowNotes extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      noteFilter: ''
+    }
+        this.handleFilter = this.handleFilter.bind(this);
+
+  }
+
+ handleFilter = e => {
+    this.setState({
+      noteFilter: e.target.value
+    });
+  };
+
+  render(){
+    return (
     <div className='main-container'>
       <div className='preview-container'>
-        <NavBar />
+        <NavBar     handleFilter={this.handleFilter}
+            filteredValue={this.state.noteFilter} />
         <div className='note-preview-organiser'>
-          {props.notes.map(note => {
-            return (
+
+          {this.props.notes.map(note => {
+
+            return note.note_text.includes(
+                  this.state.noteFilter.toLocaleLowerCase()
+                ) &&
+            (
               <NotePreview
                 key={note.id}
                 note_title={note.note_title}
@@ -20,10 +42,13 @@ const ShowNotes = props => {
               />
             );
           })}
+
         </div>
       </div>
     </div>
   );
+  }
+
 };
 
 const mapStateToProps = state => {
@@ -34,5 +59,3 @@ const mapStateToProps = state => {
 };
 
 export default connect(mapStateToProps)(ShowNotes);
-
-//new Date(note.date).toDateString()

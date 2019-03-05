@@ -16,8 +16,8 @@ const AppRouter = () => (
       <div className='router-container'>
         <ShowNotes />
         <Switch>
-          <Route path='/' exact={true} component={Welcome} />
-          <Route path='/login' component={Login} />
+          <Route path='/' exact={true} component={Login} />
+          <Route path='/dashboard' component={Welcome} />
           <Route path='/note/:id' component={ShowNote} />
           <Route path='/notes/edit/:id' component={EditNote} />
           <Route path='/new' component={AddNote} />

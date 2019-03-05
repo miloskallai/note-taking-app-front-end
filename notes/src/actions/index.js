@@ -1,4 +1,4 @@
-import firebase from '../firebase/firebase';
+import {firebase} from '../firebase/firebase';
 
 export const setNoteData = notes => ({
   type: 'SET_NOTE_DATA',

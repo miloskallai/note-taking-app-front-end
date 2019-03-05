@@ -1,45 +1,23 @@
-import React, { Component } from 'react';
+import React from 'react';
+import {connect} from 'react-redux';
+import {startLogin} from '../actions/auth.js';
 
-class Login extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+const Login = ({startLogin}) => {
 
-  render() {
     return (
-      <div className='login-container'>
-        <h1>Login</h1>
-        <form className='login-form'>
-          <label className='input-label' htmlFor='email'>
-            email
-          </label>
-          <input
-            className='note-input'
-            type='text'
-            id='email'
-            name='email'
-            label='email'
-            //onChange={onChange}
-            //value={titleValue}
-          />
-          <label className='input-label' htmlFor='password'>
-            password
-          </label>
-          <input
-            className='note-input'
-            type='password'
-            id='password'
-            name='password'
-            label='password'
-            //onChange={onChange}
-            //value={titleValue}
-          />
-          <button className='btn-login'>Login</button>
-        </form>
+        <div className='login-container'>
+      <div className='login'>
+      <h1>Login</h1>
+      <button onClick={startLogin}>Login with Google</button>
+      </div>
+       
       </div>
     );
-  }
+
 }
 
-export default Login;
+const mapDispatchToProps = dispatch => ({
+  startLogin: ()=> dispatch(startLogin())
+})
+
+export default connect(undefined, mapDispatchToProps)(Login);
