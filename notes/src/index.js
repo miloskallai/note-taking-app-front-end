@@ -3,16 +3,36 @@ import ReactDOM from 'react-dom';
 import './styles/styles.scss';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-//import './firebase/firebase';
+import {history} from './routers/AppRouter';
 import {firebase} from './firebase/firebase.js';
+import { startSetNoteData } from '../src/actions/index';
+import { login, logout } from '../src/actions/auth';
+import store from './store';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+
+let hasRendered = false;
+const renderApp = () => {
+	if(!hasRendered){
+		ReactDOM.render(<App />, document.getElementById('root'));
+		hasRendered = true;
+	}
+}
+
+ReactDOM.render(<p>Loading..</p>, document.getElementById('root'));
 
 firebase.auth().onAuthStateChanged((user) => {
 	if(user){
-		console.log('log in');
+		store.dispatch(login(user.uid));
+		store.dispatch(startSetNoteData()).then(()=> {
+			renderApp();
+			if(history.location.pathname === '/'){
+				history.push('/dashboard');
+			}
+		});
 	} else {
-		console.log('log out');
+		store.dispatch(logout());
+		renderApp(); 
+		history.push('/');
 	}
 });
 

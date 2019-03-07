@@ -1,12 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import {startLogout} from '../actions/auth.js';
 
-const NavBar = ({ handleFilter, filteredValue }) => {
+const NavBar = ({ handleFilter, filteredValue, startLogout }) => {
 	return (
 		<div className='nav-bar-container'>
 			<Link className='link' to='/'>
 				<span className='logo'>notes</span>
 			</Link>
+			<button onClick={startLogout} >Logout</button>
 			<input
 				onChange={handleFilter}
 				className='search-bar'
@@ -24,4 +27,8 @@ const NavBar = ({ handleFilter, filteredValue }) => {
 	);
 };
 
-export default NavBar;
+const mapDispatchToProps = dispatch => ({
+	startLogout: () => dispatch(startLogout()) 
+}); 
+
+export default connect(undefined, mapDispatchToProps)(NavBar);
