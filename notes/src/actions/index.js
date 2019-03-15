@@ -6,10 +6,11 @@ export const setNoteData = notes => ({
 });
 
 export const startSetNoteData = () => {
-  return dispatch => {
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
     return firebase
       .database()
-      .ref('notes')
+      .ref(`users/${uid}/notes`)
       .once('value')
       .then(snapshot => {
         const notes = [];
@@ -31,7 +32,8 @@ export const addNote = note => ({
 
 export const startAddNote = (note_title, note_text) => {
   const date = new Date().toDateString();
-  return dispatch => {
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
     const note = {
       note_title,
       note_text,
@@ -40,7 +42,7 @@ export const startAddNote = (note_title, note_text) => {
 
     firebase
       .database()
-      .ref('notes')
+      .ref(`users/${uid}/notes`)
       .push(note)
       .then(ref => {
         dispatch(addNote({ id: ref.key, ...note }));
@@ -54,10 +56,11 @@ export const deleteNote = id => ({
 });
 
 export const startDeleteNote = id => {
-  return dispatch => {
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
     return firebase
       .database()
-      .ref(`notes/${id}`)
+      .ref(`users/${uid}/notes/${id}`)
       .remove()
       .then(() => {
         dispatch(deleteNote(id));
@@ -80,12 +83,11 @@ export const editNote = (id, updates) => ({
 });
 
 export const startEditNote = (id, updates) => {
-  console.log(id);
-  console.log(updates);
-  return dispatch => {
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
     return firebase
       .database()
-      .ref(`notes/${id}`)
+      .ref(`users/${uid}/notes/${id}`)
       .update(updates)
       .then(() => {
         dispatch(editNote(id, updates));
