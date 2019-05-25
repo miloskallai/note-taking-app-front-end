@@ -18,9 +18,14 @@ const renderApp = () => {
   }
 };
 
+const spinnerStyle = {
+  width: '8rem',
+  height: '8rem'
+};
+
 ReactDOM.render(
-  <div class='d-flex justify-content-center'>
-    <div class='spinner-border' role='status'>
+  <div class='d-flex justify-content-center h-100 w-100 justify-content-center align-items-center'>
+    <div class='spinner-border' style={spinnerStyle} role='status'>
       <span class='sr-only'>Loading...</span>
     </div>
   </div>,

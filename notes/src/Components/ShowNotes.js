@@ -21,7 +21,7 @@ class ShowNotes extends Component {
   render() {
     return (
       <div className='main-container'>
-        <div className='preview-container'>
+        <div className='preview-container bg-light'>
           <NavBar
             handleFilter={this.handleFilter}
             filteredValue={this.state.noteFilter}

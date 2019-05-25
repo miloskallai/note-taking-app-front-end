@@ -8,8 +8,9 @@ const AddNote = ({ history, startAddNote }) => {
   let text_input;
 
   return (
-    <div className='add-note-container'>
+    <div className='add-note-container bg-white text-dark'>
       <form
+        className='form-group'
         onSubmit={event => {
           event.preventDefault();
           startAddNote(title_input.value, text_input.value);
@@ -22,7 +23,7 @@ const AddNote = ({ history, startAddNote }) => {
             title
           </label>
           <input
-            className='note-input'
+            className='form-control'
             type='text'
             id='note_title'
             name='note_title'
@@ -34,20 +35,22 @@ const AddNote = ({ history, startAddNote }) => {
             note
           </label>
           <textarea
+            className='form-control'
+            rows='30'
             label='note_text'
             id='note_text'
             name='note_text'
             ref={node => (text_input = node)}
           />
 
-          <div className='btn-container'>
+          <div className='btn-container text-dark'>
             <Link className='link' to='/'>
-              <span className='btn-icon input-icon link icon-container'>
+              <span className='text-dark'>
                 <ion-icon name='close' />
               </span>
             </Link>
             <button className='btn-icon'>
-              <span className='link btn-icon input-icon icon-container'>
+              <span className='link btn-icon input-icon icon-container text-dark'>
                 <ion-icon name='save' />
               </span>
             </button>

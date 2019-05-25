@@ -47,7 +47,7 @@ class EditNote extends Component {
 
   render() {
     return (
-      <div className='add-note-container'>
+      <div className='add-note-container bg-white'>
         <form
           onSubmit={event => {
             event.preventDefault();

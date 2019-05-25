@@ -1,39 +1,33 @@
 html,
 body {
-	margin: 0px;
-	padding: 0px;
-	width: 100vw;
-	height: 100vh;
+  margin: 0px;
+  padding: 0px;
+  width: 100vw;
+  height: 100vh;
 }
 
 html {
-	font-size: 62.5%;
+  font-size: 62.5%;
 }
 
 body {
-	display: flex;
+  display: flex;
 }
 
 .btn-icon {
-	border: none;
-	color: white;
-	background-color: $main-background-color;
-}
-
-//change font family
-input {
-	font-family: 'Cutive Mono', monospace !important;
+  border: none;
+  color: white;
 }
 
 *:focus {
-	outline: none;
+  outline: none;
 }
 
 .link {
-	text-decoration: none;
-	color: $main-font-color;
+  text-decoration: none;
+  color: $main-font-color;
 }
 
 .link:hover {
-	cursor: pointer;
+  cursor: pointer;
 }
