@@ -1,23 +1,27 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import {startLogin} from '../actions/auth.js';
+import { connect } from 'react-redux';
+import { startLogin } from '../actions/auth.js';
 
-const Login = ({startLogin}) => {
-
-    return (
-        <div className='login-container'>
-      <div className='login'>
-      <h1>Login</h1>
-      <button onClick={startLogin}>Login with Google</button>
+const Login = ({ startLogin }) => {
+  return (
+    <div className='login-container'>
+      <div className='card text-center'>
+        <div className='card-body'>
+          <div className='card-title'>welcome to notes</div>
+          <button className='btn btn-primary' onClick={startLogin}>
+            Login with Google
+          </button>
+        </div>
       </div>
-       
-      </div>
-    );
-
-}
+    </div>
+  );
+};
 
 const mapDispatchToProps = dispatch => ({
-  startLogin: ()=> dispatch(startLogin())
-})
+  startLogin: () => dispatch(startLogin())
+});
 
-export default connect(undefined, mapDispatchToProps)(Login);
+export default connect(
+  undefined,
+  mapDispatchToProps
+)(Login);
