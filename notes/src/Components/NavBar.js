@@ -6,7 +6,7 @@ import { startLogout } from '../actions/auth.js';
 const NavBar = ({ handleFilter, filteredValue, startLogout }) => {
   return (
     <div className='nav-bar-container bg-light'>
-      <Link className='link' to='/'>
+      <Link className='link text-decoration-none text-dark' to='/'>
         <span className='logo'>notes</span>
       </Link>
       <button className='btn btn-outline-info mb-3' onClick={startLogout}>
@@ -20,7 +20,7 @@ const NavBar = ({ handleFilter, filteredValue, startLogout }) => {
         value={filteredValue}
         id='filter'
       />
-      <Link className='link' to='/new'>
+      <Link className='link text-decoration-none text-dark' to='/new'>
         <span>
           <ion-icon name='add' />
         </span>

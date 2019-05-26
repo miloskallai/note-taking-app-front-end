@@ -24,9 +24,9 @@ const spinnerStyle = {
 };
 
 ReactDOM.render(
-  <div class='d-flex justify-content-center h-100 w-100 justify-content-center align-items-center'>
-    <div class='spinner-border' style={spinnerStyle} role='status'>
-      <span class='sr-only'>Loading...</span>
+  <div className='d-flex justify-content-center h-100 w-100 justify-content-center align-items-center'>
+    <div className='spinner-border' style={spinnerStyle} role='status'>
+      <span className='sr-only'>Loading...</span>
     </div>
   </div>,
   document.getElementById('root')

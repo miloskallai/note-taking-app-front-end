@@ -16,6 +16,10 @@ form {
   width: 100%;
 }
 
+.input-label {
+  display: block;
+}
+
 label {
   display: block;
   margin-top: 1rem;
@@ -37,7 +41,7 @@ textarea {
 }
 
 .btn-container {
-  width: 90%;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   margin: 2rem 0rem;

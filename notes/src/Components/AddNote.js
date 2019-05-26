@@ -45,15 +45,9 @@ const AddNote = ({ history, startAddNote }) => {
 
           <div className='btn-container text-dark'>
             <Link className='link' to='/'>
-              <span className='text-dark'>
-                <ion-icon name='close' />
-              </span>
+              <button className='btn btn-danger'>Discard</button>
             </Link>
-            <button className='btn-icon'>
-              <span className='link btn-icon input-icon icon-container text-dark'>
-                <ion-icon name='save' />
-              </span>
-            </button>
+            <button className='btn btn-primary'>Save</button>
           </div>
         </div>
       </form>

@@ -7,7 +7,7 @@ const ShowNote = props => {
   const note = props.notes.filter(note => note.id === props.filters.id);
 
   return (
-    <div className='single-note-container'>
+    <div className='single-note-container bg-white text-dark'>
       <div className='note-viewer'>
         {note.map(note => {
           return (

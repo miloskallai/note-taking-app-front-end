@@ -47,8 +47,9 @@ class EditNote extends Component {
 
   render() {
     return (
-      <div className='add-note-container bg-white'>
+      <div className='add-note-container bg-white text-dark'>
         <form
+          className='form-group'
           onSubmit={event => {
             event.preventDefault();
             const updates = {
@@ -60,6 +61,7 @@ class EditNote extends Component {
             this.props.history.push('/');
           }}
         >
+          <h2>Edit note</h2>
           <Input
             key={this.state.id}
             titleValue={this.state.note_title}

@@ -10,7 +10,7 @@ const Note = ({
   handleEdit
 }) => {
   return (
-    <div className='main-noteID-container'>
+    <div className='main-noteID-container text-dark'>
       <h3>{note_title}</h3>
       <p className='note-text'>{note_text}</p>
       <p className='date-container'>{date}</p>
